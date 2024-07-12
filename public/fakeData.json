@@ -1,0 +1,56 @@
+[
+    {
+        "name": "John Doe",
+        "job_title": "Software Engineer",
+        "job_posting_date": "2024-07-10",
+        "application_deadline": "2024-08-10",
+        "salary_range": "60000-80000",
+        "job_applicants_number": 120,
+        "job_type": "Remote"
+    },
+    {
+        "name": "Jane Smith",
+        "job_title": "Project Manager",
+        "job_posting_date": "2024-07-12",
+        "application_deadline": "2024-08-15",
+        "salary_range": "70000-90000",
+        "job_applicants_number": 75,
+        "job_type": "Hybrid"
+    },
+    {
+        "name": "Michael Johnson",
+        "job_title": "Data Analyst",
+        "job_posting_date": "2024-07-09",
+        "application_deadline": "2024-08-05",
+        "salary_range": "50000-70000",
+        "job_applicants_number": 95,
+        "job_type": "Onsite"
+    },
+    {
+        "name": "Emily Davis",
+        "job_title": "UX Designer",
+        "job_posting_date": "2024-07-11",
+        "application_deadline": "2024-08-12",
+        "salary_range": "55000-75000",
+        "job_applicants_number": 60,
+        "job_type": "Remote"
+    },
+    {
+        "name": "Robert Brown",
+        "job_title": "Marketing Specialist",
+        "job_posting_date": "2024-07-08",
+        "application_deadline": "2024-08-09",
+        "salary_range": "45000-65000",
+        "job_applicants_number": 80,
+        "job_type": "Hybrid"
+    },
+    {
+        "name": "Laura Wilson",
+        "job_title": "HR Manager",
+        "job_posting_date": "2024-07-13",
+        "application_deadline": "2024-08-20",
+        "salary_range": "60000-85000",
+        "job_applicants_number": 50,
+        "job_type": "Onsite"
+    }
+]
