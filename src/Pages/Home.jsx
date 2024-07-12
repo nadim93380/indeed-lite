@@ -1,9 +1,10 @@
+import HomeBanner from "../Components/HomeBanner";
 
 
 const Home = () => {
     return (
         <div>
-            <h3>Hello Form Home</h3>
+            <HomeBanner></HomeBanner>
         </div>
     );
 };
