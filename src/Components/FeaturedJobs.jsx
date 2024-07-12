@@ -1,10 +1,13 @@
+/* eslint-disable no-undef */
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { useEffect, useState } from 'react';
 import JobCard from './JobCard';
+import axios from 'axios';
 
 const FeaturedJobs = () => {
+    // const axios = require('axios');
 
     const [value, setValue] = useState(0);
     const [show,setShow]=useState([])
@@ -15,9 +18,12 @@ const FeaturedJobs = () => {
     };
 
     useEffect(() => {
-        fetch('/fakeData.json')
-            .then(res => res.json())
-        .then(data=>setShow(data))
+        const getData = async() => {
+            const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/allJobs`)
+            setShow(data)
+            console.log(data)
+        }
+        getData()
     },[])
 
     return (
