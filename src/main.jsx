@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Home from './Pages/Home';
 import MainLayout from './Layout/MainLayout';
+import JobDetails from './Pages/JobDetails';
 
 
 const router = createBrowserRouter([
@@ -17,7 +18,13 @@ const router = createBrowserRouter([
       {
         path: '/',
         element:<Home></Home>
-      }
+      },
+      {
+        path: '/jobDetails/:id',
+        element: <JobDetails></JobDetails>,
+        loader: ({params})=>fetch(`${import.meta.env.VITE_PASS_BaseURL}/jobDetails/${params.id}`)
+      },
+
     ]
   },
 ]);
