@@ -22,7 +22,7 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/allJobs'>All Jobs</NavLink></li>
         {user && <li><NavLink to='/addCraft'>Applied Jobs</NavLink></li>}
-        {user && <li><NavLink to='/myCraft'>Post Job</NavLink></li>}
+        {user && <li><NavLink to='/postjob'>Post Job</NavLink></li>}
         {user && <li><NavLink to='/myCraft'>My Jobs</NavLink></li>}
         {user && <li><NavLink to='/profile'>Profile</NavLink></li>}
         <li><NavLink to='/contactUs'>Blogs</NavLink></li>

@@ -17,7 +17,7 @@ const AllJobs = () => {
 
 
     return (
-        <div className="w-11/12 md:w-10/12 mx-auto">
+        <div className="w-11/12 md:w-10/12 mx-auto py-5">
             <div className="overflow-x-auto">
                 <table className="table table-md">
                     <thead>

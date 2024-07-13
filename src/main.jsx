@@ -15,6 +15,7 @@ import AuthSharer from './Authentication/AuthSharer';
 import PrivateRoute from './Layout/PrivateRoute';
 import Profile from './Pages/Profile';
 import AllJobs from './Pages/AllJobs';
+import PostJob from './Pages/PostJob';
 
 
 const router = createBrowserRouter([
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: '/profile',
         element: <PrivateRoute><Profile></Profile></PrivateRoute>,
+      },
+      {
+        path: '/postjob',
+        element: <PrivateRoute><PostJob></PostJob></PrivateRoute>,
       },
       {
         path: '/allJobs',
