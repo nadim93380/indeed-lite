@@ -1,7 +1,22 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Authentication/AuthSharer";
+import Swal from "sweetalert2";
 
 
 const Navbar = () => {
+
+    const { user, logout } = useContext(AuthContext)
+    
+    const handleLogout = () => {
+        logout()
+        return Swal.fire({
+            icon: "success",
+            title: "Logout Successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+    }
 
     const link = <>
         <li><NavLink to='/'>Home</NavLink></li>
@@ -77,9 +92,8 @@ const Navbar = () => {
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </label>
-                <Link to="/login" className="btn btn-success text-white btn-sm md:btn-md">Login</Link>
                 {/* User Section */}
-                {/* {
+                {
                     user ?
                         <div className="dropdown dropdown-end">
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
@@ -101,10 +115,9 @@ const Navbar = () => {
                         :
                         <div className="flex justify-center items-center gap-1 md:gap-3">
                             <Link to="/login" className="btn btn-success text-white btn-sm md:btn-md">Login</Link>
-                            <Link to="/register" className="btn btn-outline btn-sm md:btn-md">Register</Link>
                         </div>
                         
-                } */}
+                }
             </div>
         </div>
     );
