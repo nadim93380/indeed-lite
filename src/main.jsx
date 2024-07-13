@@ -10,12 +10,14 @@ import MainLayout from './Layout/MainLayout';
 import JobDetails from './Pages/JobDetails';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import ErrorPage from './Pages/ErrorPage';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
