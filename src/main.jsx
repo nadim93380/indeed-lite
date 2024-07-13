@@ -12,6 +12,7 @@ import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ErrorPage from './Pages/ErrorPage';
 import AuthSharer from './Authentication/AuthSharer';
+import PrivateRoute from './Layout/PrivateRoute';
 
 
 const router = createBrowserRouter([
@@ -26,7 +27,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/jobDetails/:id',
-        element: <JobDetails></JobDetails>,
+        element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
         loader: ({params})=>fetch(`${import.meta.env.VITE_PASS_BaseURL}/jobDetails/${params.id}`)
       },
       {
