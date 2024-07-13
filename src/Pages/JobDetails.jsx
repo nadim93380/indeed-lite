@@ -61,9 +61,9 @@ const JobDetails = () => {
                             <img src={item.posted_by_photo} className="h-24 w-24 rounded-full object-cover" />
                             <div>
                                 <h4 className="font-bold">Name : {item.name}</h4>
-                                <p>Human Resource Management</p>
-                                <p>Email : {item.posted_by_email}</p>
-                                <p>InDeed Lite Corporation.</p>
+                                <p className="text-sm">Human Resource Management</p>
+                                <p className="text-sm">Email : {item.posted_by_email}</p>
+                                <p className="text-sm">InDeed Lite Corporation.</p>
                             </div>
                         </div>
                         <div>

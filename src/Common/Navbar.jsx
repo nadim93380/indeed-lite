@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 
 const Navbar = () => {
@@ -77,6 +77,7 @@ const Navbar = () => {
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
                 </label>
+                <Link to="/login" className="btn btn-success text-white btn-sm md:btn-md">Login</Link>
                 {/* User Section */}
                 {/* {
                     user ?

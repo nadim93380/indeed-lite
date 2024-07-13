@@ -8,6 +8,8 @@ import {
 import Home from './Pages/Home';
 import MainLayout from './Layout/MainLayout';
 import JobDetails from './Pages/JobDetails';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 
 
 const router = createBrowserRouter([
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
         path: '/jobDetails/:id',
         element: <JobDetails></JobDetails>,
         loader: ({params})=>fetch(`${import.meta.env.VITE_PASS_BaseURL}/jobDetails/${params.id}`)
+      },
+      {
+        path: '/login',
+        element: <Login></Login>,
+      },
+      {
+        path: '/register',
+        element: <Register></Register>,
       },
 
     ]
