@@ -20,7 +20,6 @@ const FeaturedJobs = () => {
         const getData = async () => {
             const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/allJobs`)
             setShow(data)
-            console.log(data)
         }
         getData()
     }, [])

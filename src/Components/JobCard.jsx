@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { SlCalender } from "react-icons/sl";
 
 import { Link } from "react-router-dom";
 
@@ -17,7 +18,7 @@ const JobCard = ({ item }) => {
 
             <div className="flex justify-between items-center">
                 <p>Salary Range : <span className="font-bold">{item.salary_range}$/year</span></p>
-                <p className="text-red-600">Deadline : {item.application_deadline}</p>
+                <p className="text-red-600 flex justify-center items-center gap-2"><SlCalender /> {item.application_deadline}</p>
             </div>
             <div className="flex justify-start">
             <button><Link to={`/jobDetails/${item._id}`} className="bg-slate-300 p-2">View Details</Link></button>
