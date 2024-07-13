@@ -14,14 +14,31 @@ const FeaturedJobs = () => {
     const handleChange = (event, newValue) => {
         setValue(newValue);
         console.log(newValue)
+        if (newValue === 0) {
+            getData('alljobs')
+            return
+        }
+        if (newValue === 1) {
+            getData('jobs/Onsite')
+            return
+        }
+        if (newValue === 2) {
+            getData('jobs/Remote')
+            return
+        }
+        if (newValue === 3) {
+            getData('jobs/Hybrid')
+            return
+        }
     };
 
+    const getData = async (jobType) => {
+        const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/${jobType}`)
+        setShow(data)
+    }
+
     useEffect(() => {
-        const getData = async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/allJobs`)
-            setShow(data)
-        }
-        getData()
+        getData('alljobs')
     }, [])
 
     return (
