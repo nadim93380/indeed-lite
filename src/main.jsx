@@ -13,6 +13,8 @@ import Register from './Pages/Register';
 import ErrorPage from './Pages/ErrorPage';
 import AuthSharer from './Authentication/AuthSharer';
 import PrivateRoute from './Layout/PrivateRoute';
+import Profile from './Pages/Profile';
+import AllJobs from './Pages/AllJobs';
 
 
 const router = createBrowserRouter([
@@ -37,6 +39,14 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>,
+      },
+      {
+        path: '/profile',
+        element: <PrivateRoute><Profile></Profile></PrivateRoute>,
+      },
+      {
+        path: '/allJobs',
+        element: <AllJobs></AllJobs>,
       },
 
     ]

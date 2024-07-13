@@ -2,7 +2,7 @@
 
 import { createContext, useEffect, useState } from "react";
 import { app } from "./firebase.config";
-import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 
 
 export const AuthContext = createContext(null)
@@ -61,6 +61,20 @@ const AuthSharer = ({ children }) => {
         return signOut(auth)
     }
 
+    // Update user 
+    const updateUserData = (name = false, photo = false)=>{
+        if (name) {
+            return updateProfile(user, {
+                displayName: name
+            })
+        }
+        if (photo) {
+            return updateProfile(user, {
+                photoURL: photo
+            })
+        }
+    }
+
 
     const sharing = {
         creatUser,
@@ -72,6 +86,7 @@ const AuthSharer = ({ children }) => {
         setLoading,
         loginWithGoogle,
         signInWithGitHub,
+        updateUserData
     }
 
     return (

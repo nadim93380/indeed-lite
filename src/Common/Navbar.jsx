@@ -20,11 +20,12 @@ const Navbar = () => {
 
     const link = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/allCraft'>All Jobs</NavLink></li>
-        {/* {user && <li><NavLink to='/addCraft'>Applied Jobs</NavLink></li>}
-        {user && <li><NavLink to='/myCraft'>Post Jobs</NavLink></li>} */}
-        <li><NavLink to='/contactUs'>My Jobs</NavLink></li>
-        <li><NavLink to='/contactUs'>Contact Us</NavLink></li>
+        <li><NavLink to='/allJobs'>All Jobs</NavLink></li>
+        {user && <li><NavLink to='/addCraft'>Applied Jobs</NavLink></li>}
+        {user && <li><NavLink to='/myCraft'>Post Job</NavLink></li>}
+        {user && <li><NavLink to='/myCraft'>My Jobs</NavLink></li>}
+        {user && <li><NavLink to='/profile'>Profile</NavLink></li>}
+        <li><NavLink to='/contactUs'>Blogs</NavLink></li>
     </>
     return (
         <div className="navbar bg-base-100 max-w-7xl mx-auto">
