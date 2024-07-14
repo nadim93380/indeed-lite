@@ -1,14 +1,17 @@
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import JobListCard from "../Components/JobListCard";
+import { AuthContext } from "../Authentication/AuthSharer";
+import MyJobListCard from "../Components/MyJobListCard";
 
 
-const AllJobs = () => {
+const MyJobs = () => {
+
+    const {user}=useContext(AuthContext)
 
     const [show, setShow] = useState([])
 
     const getData = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/allJobs`)
+        const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/jobsOf/${user.email}`)
         setShow(data)
     }
 
@@ -18,26 +21,28 @@ const AllJobs = () => {
 
 
     return (
-        <div className="w-11/12 md:w-10/12 mx-auto py-5">
+        <div>
+            <div className="w-11/12 md:w-10/12 mx-auto py-5">
             <div className="overflow-x-auto">
                 <table className="table table-md">
                     <thead>
                         <tr>
                             <th>Index</th>
                             <th>Job Title</th>
-                            <th>Job Posting Date</th>
                             <th>Deadline</th>
                             <th>Salary Range</th>
+                            <th>Applicants</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                       {show.map((item,idx)=><JobListCard key={idx} item={item} idx={idx}></JobListCard>)}
+                       {show.map((item,idx)=><MyJobListCard key={idx} item={item} idx={idx}></MyJobListCard>)}
                     </tbody>
                 </table>
             </div>
         </div>
+        </div>
     );
 };
 
-export default AllJobs;
+export default MyJobs;

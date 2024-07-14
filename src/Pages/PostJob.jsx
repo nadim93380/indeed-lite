@@ -27,7 +27,6 @@ const PostJob = () => {
         const job_banner = form.job_banner.value
         const newJob = { name, job_title, job_posting_date, application_deadline, salary_range, job_applicants_number, job_type, posted_by_email, posted_by_photo, long_description, job_banner }
         
-        console.log(newJob)
 
         axios.post(`${import.meta.env.VITE_PASS_BaseURL}/addjob`, newJob)
           .then(function () {
