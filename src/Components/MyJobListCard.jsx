@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 const MyJobListCard = (props) => {
 
     const item = props.item
-    console.log(item)
     const idx = props.idx
 
 
@@ -47,7 +46,7 @@ const MyJobListCard = (props) => {
             <tr className="hover:bg-slate-50">
                 <td>{idx + 1}</td>
                 <td>{item.job_title}</td>
-                <td className="text-red-600">{item.application_deadline}</td>
+                <td className="text-red-600">{new Date(item.application_deadline).toLocaleDateString("en-GB")}</td>
                 <td>{item.salary_range}$</td>
                 <td>{item.job_applicants_number} Person</td>
                 <td className="flex justify-start gap-3 items-center">

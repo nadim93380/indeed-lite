@@ -37,7 +37,7 @@ const Profile = () => {
         <div className="py-8">
             <div className="flex justify-center mb-7">
                 <div className="w-20">
-                    <img className="rounded-full object-cover w-full border" src={user?.photoURL ? user.photoURL : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} />
+                    <img referrerPolicy="no-referer" className="rounded-full object-cover w-full border" src={user?.photoURL ? user.photoURL : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"} />
                 </div>
             </div>
             <div className="w-full md:w-10/12  mx-auto">

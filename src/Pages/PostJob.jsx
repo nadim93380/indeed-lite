@@ -51,6 +51,7 @@ const PostJob = () => {
         <div className="w-11/12 md:w-10/12 mx-auto flex justify-center h-[70vh] items-center">
             <div className="bg-slate-100 py-6 px-7">
                 <h3 className="text-2xl font-bold text-center mb-3">inDeed Lite</h3>
+                <p className="text-center my-3 text-green-500">Post A Job For Recruitment.</p>
                 <form onSubmit={handlePostJob} className="space-y-5 flex flex-col justify-center items-center">
                     <div className="flex gap-5">
                         <input type="text" name="job_title" placeholder="Job Position" className=" py-2 px-4" required/>
@@ -59,8 +60,8 @@ const PostJob = () => {
                     <input type="text" name="job_banner" placeholder="Job Banner URL" className="w-full py-2 px-4"  required/>
                     <input type="textarea" name="description" placeholder="Job Description" rows='4' className="w-full py-2 px-4"  required/>
                     <div className="flex gap-5 w-full">
-                        <DatePicker selected={today} dateFormat="yyyy-MM-dd" onChange={(date) => setStartDate(date)} disabled className="border-y-2 w-full py-2 px-4"/>
-                        <DatePicker placeholderText="Select Deadline" required selected={startDate} dateFormat="yyyy-MM-dd" onChange={(date) => setStartDate(date)} className="w-full text-red-600 py-2 px-4"/>
+                        <DatePicker selected={today} dateFormat="dd-MM-yyyy" onChange={(date) => setStartDate(date)} disabled className="border-y-2 w-full py-2 px-4"/>
+                        <DatePicker placeholderText="Select Deadline" required selected={startDate} dateFormat="dd-MM-yyyy" onChange={(date) => setStartDate(date)} className="w-full text-red-600 py-2 px-4"/>
                     </div>
                     <select name="job_type" className="w-full py-2 px-4" required>
                         <option value="On Site">On Site</option>

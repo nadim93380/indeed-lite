@@ -44,7 +44,7 @@ const JobDetails = () => {
 
                     <div className="flex justify-between items-center">
                         <p>Salary Range : <span className="font-bold text-green-600">{item.salary_range}$/year</span></p>
-                        <p className="text-red-600 flex justify-center items-center gap-2">Deadline : {item.application_deadline}</p>
+                        <p className="text-red-600 flex justify-center items-center gap-2">Deadline : {new Date(item.application_deadline).toLocaleDateString("en-GB")}</p>
                     </div>
                     <div className="border-t py-3">
                         <h2 className="font-bold text-xl underline">Job Description : </h2>

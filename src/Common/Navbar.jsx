@@ -100,6 +100,7 @@ const Navbar = () => {
                             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
                                     <img
+                                        referrerPolicy="no-referer"
                                         alt="Tailwind CSS Navbar component"
                                         src={user.photoURL?user.photoURL:"https://www.shutterstock.com/image-vector/user-profile-icon-vector-avatar-600nw-2247726673.jpg"} />
                                 </div>

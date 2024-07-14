@@ -47,7 +47,8 @@ const UpdateJob = () => {
     return (
         <div className="w-11/12 md:w-10/12 mx-auto flex justify-center h-[70vh] items-center">
             <div className="bg-slate-100 py-6 px-7">
-            <h3 className="text-2xl font-bold text-center mb-3">inDeed Lite</h3>
+                <h3 className="text-2xl font-bold text-center">inDeed Lite</h3>
+                <p className="text-center my-3 text-green-500">Update Your Job Information</p>
                 <form onSubmit={handleUpdateJob} className="space-y-5 flex flex-col justify-center items-center">
                     <div className="flex gap-5 w-full">
                         <input type="text" defaultValue={item.job_title} name="job_title" placeholder="Job Position" className="w-full py-2 px-4" required />
@@ -57,10 +58,10 @@ const UpdateJob = () => {
                     <input type="textarea" defaultValue={item.long_description} name="description" placeholder="Job Description" rows='4' className="w-full py-2 px-4" required />
                     <div className="flex gap-5 w-full">
                         <div className="w-full">
-                            <DatePicker selected={item.job_posting_date} dateFormat="yyyy-MM-dd" disabled className="border-y-2 py-2 px-4" />
+                            <DatePicker selected={item.job_posting_date} dateFormat="dd-MM-yyyy" disabled className="border-y-2 py-2 px-4" />
                         </div>
                         <div className="w-full">
-                            <DatePicker placeholderText="Select Deadline" required selected={startDate} dateFormat="yyyy-MM-dd" onChange={(date) => setStartDate(date)} className=" text-red-600 py-2 px-4" />
+                            <DatePicker placeholderText="Select Deadline" required selected={startDate} dateFormat="dd-MM-yyyy" onChange={(date) => setStartDate(date)} className=" text-red-600 py-2 px-4" />
                         </div>
                     </div>
                     <select name="job_type" defaultValue={item.job_type} className="w-full py-2 px-4" required>
@@ -72,7 +73,7 @@ const UpdateJob = () => {
                         <input type="text" defaultValue={item.name} className="border-y-2 py-2 px-4 w-full" disabled />
                         <input type="email" defaultValue={item.posted_by_email} className="border-y-2 py-2 px-4 w-full" disabled />
                     </div>
-                    <button className="btn btn-block btn-success text-white">Submit</button>
+                    <button className="btn btn-block btn-success text-white">Update</button>
                 </form>
             </div>
         </div>

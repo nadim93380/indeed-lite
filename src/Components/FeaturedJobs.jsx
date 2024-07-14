@@ -13,7 +13,6 @@ const FeaturedJobs = () => {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        console.log(newValue)
         if (newValue === 0) {
             getData('alljobs')
             return
