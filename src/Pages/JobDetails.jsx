@@ -26,11 +26,6 @@ const JobDetails = () => {
         const handleOpen = () => setOpen(true);
         const handleClose = () => setOpen(false);
 
-
-
-
-
-
     return (
         <div className="w-11/12 md:w-10/12 mx-auto">
             <div>
