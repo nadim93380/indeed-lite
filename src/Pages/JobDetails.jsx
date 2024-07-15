@@ -1,30 +1,36 @@
 import { useLoaderData } from "react-router-dom";
 import { VscGitStashApply } from "react-icons/vsc";
-import Backdrop from '@mui/material/Backdrop';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-import Typography from '@mui/material/Typography';
-import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../Authentication/AuthSharer";
+import Swal from "sweetalert2";
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
+
 
 const JobDetails = () => {
     const item = useLoaderData()
+    const { user } = useContext(AuthContext)
+    const today = Date.now()
+    const deadline = item.application_deadline
+    const Deadline = deadline instanceof Date ? deadline.getTime() : new Date(deadline).getTime()
+
     // For Job Apply
-        const [open, setOpen] = useState(false);
-        const handleOpen = () => setOpen(true);
-        const handleClose = () => setOpen(false);
+
+    const handleApply = (e) => {
+        e.preventDefault()
+        if (today > Deadline) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Deadline Expired",
+              });
+            document.getElementById('my_modal_2').close()
+            return
+        }
+        else {
+            document.getElementById('my_modal_2').close()
+            alert("Success")
+        }
+    }
 
     return (
         <div className="w-11/12 md:w-10/12 mx-auto">
@@ -62,32 +68,26 @@ const JobDetails = () => {
                             </div>
                         </div>
                         <div>
-                            <button onClick={handleOpen} className="btn btn-block btn-success text-white">Apply Now <VscGitStashApply /></button>
+                            <button onClick={() => document.getElementById('my_modal_2').showModal()} className="btn btn-block btn-success text-white" disabled={user.email === item.posted_by_email}>Apply Now <VscGitStashApply /></button>
                             <div>
-                                <Modal
-                                    aria-labelledby="transition-modal-title"
-                                    aria-describedby="transition-modal-description"
-                                    open={open}
-                                    onClose={handleClose}
-                                    closeAfterTransition
-                                    slots={{ backdrop: Backdrop }}
-                                    slotProps={{
-                                        backdrop: {
-                                            timeout: 500,
-                                        },
-                                    }}
-                                >
-                                    <Fade in={open}>
-                                        <Box sx={style}>
-                                            <Typography id="transition-modal-title" variant="h6" component="h2">
-                                                Text in a modal
-                                            </Typography>
-                                            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-                                                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                                            </Typography>
-                                        </Box>
-                                    </Fade>
-                                </Modal>
+                                {/* Open the modal using document.getElementById('ID').showModal() method */}
+                                <dialog id="my_modal_2" className="modal">
+                                    <div className="modal-box bg-slate-100">
+                                        <h3 className="text-2xl font-bold text-center mb-3">inDeed Lite</h3>
+                                        <p className="text-center my-3 text-green-500">Apply To This Job.</p>
+                                        <form onSubmit={handleApply} className="space-y-5 flex flex-col justify-center items-center">
+                                        <input type="text" name="applicant_CV" placeholder="Resume URL" rows='4' className="w-full py-2 px-4" required />
+                                        <div className="flex gap-5">
+                                            <input type="text" defaultValue={user.displayName} className="border-y-2 py-2 px-4" disabled />
+                                            <input type="email" defaultValue={user.email} className="border-y-2 py-2 px-4" disabled />
+                                        </div>
+                                        <button className="btn btn-block btn-success text-white">Submit</button>
+                                    </form>
+                                    </div>
+                                    <form method="dialog" className="modal-backdrop">
+                                        <button>close</button>
+                                    </form>
+                                </dialog>
                             </div>
                         </div>
                     </div>
