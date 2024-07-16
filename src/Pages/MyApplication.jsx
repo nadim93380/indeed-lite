@@ -1,30 +1,25 @@
 import { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { AuthContext } from "../Authentication/AuthSharer";
-import MyJobListCard from "../Components/MyJobListCard";
+import axios from "axios";
+import MyApplicationListCard from "../Components/MyApplicationListCard";
 import NoData from "../Components/NoData";
 
-
-const MyJobs = () => {
-
-    const { user } = useContext(AuthContext)
-
+const MyApplication = () => {
+    const {user}= useContext(AuthContext)
     const [show, setShow] = useState([])
-
-    const getData = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/jobsOf/${user.email}`)
+    
+    const getData = async() => {
+        const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/myApplication/${user.email}`)
+        console.log(data)
         setShow(data)
     }
-
     useEffect(() => {
         getData()
     }, [])
-
     if (show.length === 0) {
         return <NoData></NoData>
     }
-
-
+    
     return (
         <div>
             <div className="w-11/12 md:w-10/12 mx-auto py-5">
@@ -34,14 +29,14 @@ const MyJobs = () => {
                             <tr>
                                 <th>Index</th>
                                 <th>Job Title</th>
-                                <th>Deadline</th>
-                                <th>Salary Range</th>
-                                <th>Applicants</th>
+                                <th>Resume URL</th>
+                                <th>Employer Email</th>
+                                <th>Application Status</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {show.map((item, idx) => <MyJobListCard key={idx} item={item} idx={idx}></MyJobListCard>)}
+                            {show.map((item, idx) => <MyApplicationListCard key={idx} item={item} idx={idx}></MyApplicationListCard>)}
                         </tbody>
                     </table>
                 </div>
@@ -50,4 +45,4 @@ const MyJobs = () => {
     );
 };
 
-export default MyJobs;
+export default MyApplication;

@@ -4,6 +4,7 @@ import { Navigate, useLocation } from "react-router-dom";
 
 import { AuthContext } from "../Authentication/AuthSharer";
 import Loading from "../Common/Loading";
+import Swal from "sweetalert2";
 
 
 const PrivateRoute = ({ children }) => {
@@ -14,6 +15,11 @@ const PrivateRoute = ({ children }) => {
         return <Loading></Loading>
     }
     if (!user) {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Please Login First To Continue.",
+          });
         return <Navigate to='/login' state={location.pathname}></Navigate>
     }
     if (user) {

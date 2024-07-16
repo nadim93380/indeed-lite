@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import JobListCard from "../Components/JobListCard";
+import NoData from "../Components/NoData";
 
 
 const AllJobs = () => {
@@ -16,6 +17,9 @@ const AllJobs = () => {
         getData()
     }, [])
 
+    if (show.length === 0) {
+        return <NoData></NoData>
+    }
 
     return (
         <div className="w-11/12 md:w-10/12 mx-auto py-5">

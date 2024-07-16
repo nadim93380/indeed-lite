@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import { useEffect, useState } from 'react';
 import JobCard from './JobCard';
 import axios from 'axios';
+import NoData from './NoData';
 
 const FeaturedJobs = () => {
 
@@ -39,6 +40,10 @@ const FeaturedJobs = () => {
     useEffect(() => {
         getData('alljobs')
     }, [])
+
+    if (show.length === 0) {
+        return <NoData></NoData>
+    }
 
     return (
         <div className="bg-slate-200 py-9 space-y-5">

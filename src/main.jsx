@@ -18,6 +18,8 @@ import AllJobs from './Pages/AllJobs';
 import PostJob from './Pages/PostJob';
 import MyJobs from './Pages/MyJobs';
 import UpdateJob from './Pages/UpdateJob';
+import MyApplication from './Pages/MyApplication';
+import Blogs from './Pages/Blogs';
 
 
 const router = createBrowserRouter([
@@ -56,8 +58,16 @@ const router = createBrowserRouter([
         element: <AllJobs></AllJobs>,
       },
       {
+        path: '/blogs',
+        element: <Blogs></Blogs>,
+      },
+      {
         path: '/myJobs',
         element: <PrivateRoute><MyJobs></MyJobs></PrivateRoute>,
+      },
+      {
+        path: '/myApplication',
+        element: <PrivateRoute><MyApplication></MyApplication></PrivateRoute>,
       },
       {
         path: '/updateJob/:id',
