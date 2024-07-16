@@ -3,6 +3,7 @@ import { VscGitStashApply } from "react-icons/vsc";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication/AuthSharer";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 
 
@@ -15,20 +16,52 @@ const JobDetails = () => {
 
     // For Job Apply
 
-    const handleApply = (e) => {
+    const handleApply = async(e) => {
         e.preventDefault()
+        const form = e.target
+        const applicant_CV = form.applicant_CV.value
+        const applicant_name = user.displayName
+        const applicant_email = user.email
+        const applied_job_id = item._id
+        const applied_job_title = item.job_title
+        const employer_email = item.posted_by_email
+        const application_status = "Submitted"
+        const newApplication = { applicant_CV, applicant_name, applicant_email, applied_job_id, employer_email, application_status,applied_job_title }
+
+
         if (today > Deadline) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
                 text: "Deadline Expired",
-              });
+            });
+            form.reset()
             document.getElementById('my_modal_2').close()
             return
         }
         else {
+
+            try {
+                const { data } =await axios.post(`${import.meta.env.VITE_PASS_BaseURL}/addApplication`,newApplication)
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your Application Has Been Submitted",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+                
+            } catch (error) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Something Went Wrong! Try Again Later.",
+                });
+            }
+            form.reset()
             document.getElementById('my_modal_2').close()
-            alert("Success")
         }
     }
 
@@ -76,13 +109,13 @@ const JobDetails = () => {
                                         <h3 className="text-2xl font-bold text-center mb-3">inDeed Lite</h3>
                                         <p className="text-center my-3 text-green-500">Apply To This Job.</p>
                                         <form onSubmit={handleApply} className="space-y-5 flex flex-col justify-center items-center">
-                                        <input type="text" name="applicant_CV" placeholder="Resume URL" rows='4' className="w-full py-2 px-4" required />
-                                        <div className="flex gap-5">
-                                            <input type="text" defaultValue={user.displayName} className="border-y-2 py-2 px-4" disabled />
-                                            <input type="email" defaultValue={user.email} className="border-y-2 py-2 px-4" disabled />
-                                        </div>
-                                        <button className="btn btn-block btn-success text-white">Submit</button>
-                                    </form>
+                                            <input type="text" name="applicant_CV" placeholder="Resume URL" rows='4' className="w-full py-2 px-4" required />
+                                            <div className="flex gap-5">
+                                                <input type="text" defaultValue={user.displayName} className="border-y-2 py-2 px-4" disabled />
+                                                <input type="email" defaultValue={user.email} className="border-y-2 py-2 px-4" disabled />
+                                            </div>
+                                            <button className="btn btn-block btn-success text-white">Submit</button>
+                                        </form>
                                     </div>
                                     <form method="dialog" className="modal-backdrop">
                                         <button>close</button>
