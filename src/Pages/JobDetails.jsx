@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { VscGitStashApply } from "react-icons/vsc";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication/AuthSharer";
@@ -10,6 +10,7 @@ import axios from "axios";
 const JobDetails = () => {
     const item = useLoaderData()
     const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
     const today = Date.now()
     const deadline = item.application_deadline
     const Deadline = deadline instanceof Date ? deadline.getTime() : new Date(deadline).getTime()
@@ -42,6 +43,7 @@ const JobDetails = () => {
         else {
 
             try {
+                axios.patch(`${import.meta.env.VITE_PASS_BaseURL}/updateJobApplicant/${item._id}`)
                 const { data } =await axios.post(`${import.meta.env.VITE_PASS_BaseURL}/addApplication`,newApplication)
                 if (data.insertedId) {
                     Swal.fire({
@@ -51,6 +53,7 @@ const JobDetails = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    navigate('/myApplication')
                 }
                 
             } catch (error) {
