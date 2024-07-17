@@ -2,10 +2,13 @@
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import JobCard from './JobCard';
 import axios from 'axios';
+import Loading from '../Common/Loading';
 import NoData from './NoData';
+import { useQuery } from '@tanstack/react-query';
+// import NoData from './NoData';
 
 const FeaturedJobs = () => {
 
@@ -35,12 +38,23 @@ const FeaturedJobs = () => {
     const getData = async (jobType) => {
         const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/${jobType}`)
         setShow(data)
+        return data
     }
 
-    useEffect(() => {
-        getData('alljobs')
-    }, [])
+    const { isLoading, isError, error } = useQuery({
+        queryKey: ['featuredJobs'],
+        queryFn: async () => {
+            const data  = getData('alljobs')
+            return data
+        },
+    })
 
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+    if (error || isError) {
+        return <NoData></NoData>
+    }
     if (show.length === 0) {
         return <NoData></NoData>
     }

@@ -1,22 +1,26 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
 import JobListCard from "../Components/JobListCard";
 import NoData from "../Components/NoData";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../Common/Loading";
 
 
 const AllJobs = () => {
 
-    const [show, setShow] = useState([])
+    const { isLoading, isError, data:show=[], error } = useQuery({
+        queryKey: ['allJobs'],
+        queryFn: async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/allJobs`)
+            return data
+        },
+    })
 
-    const getData = async () => {
-        const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/allJobs`)
-        setShow(data)
+    if (isLoading) {
+        return <Loading></Loading>
     }
-
-    useEffect(() => {
-        getData()
-    }, [])
-
+    if (error || isError) {
+        return <NoData></NoData>
+    }
     if (show.length === 0) {
         return <NoData></NoData>
     }

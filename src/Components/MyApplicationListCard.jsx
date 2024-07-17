@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 
 import { CiSaveDown2 } from "react-icons/ci";
-// import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 
@@ -59,7 +58,7 @@ const MyApplicationListCard = (props) => {
             <td><span className="bg-sky-300 py-2 px-4 rounded-full">{item.application_status}</span></td>
             <td className="flex justify-start gap-3 items-center">
 
-                <PDFDownloadLink document={<MyDocument />} fileName="example.pdf">
+                <PDFDownloadLink document={<MyDocument />} fileName={`Application Summary-${item.applied_job_title}.pdf`}>
                     {({ loading }) =>
                         loading ? 'Loading document...' : <button className="text-black flex justify-center items-center gap-2 p-2 rounded-lg bg-slate-300">Download <CiSaveDown2 /></button>
                     }

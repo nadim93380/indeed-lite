@@ -20,6 +20,8 @@ import MyJobs from './Pages/MyJobs';
 import UpdateJob from './Pages/UpdateJob';
 import MyApplication from './Pages/MyApplication';
 import Blogs from './Pages/Blogs';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 
 const router = createBrowserRouter([
@@ -30,12 +32,12 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element:<Home></Home>
+        element: <Home></Home>
       },
       {
         path: '/jobDetails/:id',
         element: <PrivateRoute><JobDetails></JobDetails></PrivateRoute>,
-        loader: ({params})=>fetch(`${import.meta.env.VITE_PASS_BaseURL}/jobDetails/${params.id}`)
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_PASS_BaseURL}/jobDetails/${params.id}`)
       },
       {
         path: '/login',
@@ -72,17 +74,21 @@ const router = createBrowserRouter([
       {
         path: '/updateJob/:id',
         element: <PrivateRoute><UpdateJob></UpdateJob></PrivateRoute>,
-        loader:({params})=>fetch(`${import.meta.env.VITE_PASS_BaseURL}/jobDetails/${params.id}`)
+        loader: ({ params }) => fetch(`${import.meta.env.VITE_PASS_BaseURL}/jobDetails/${params.id}`)
       },
 
     ]
   },
 ]);
+const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthSharer>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false}></ReactQueryDevtools>
+      </QueryClientProvider>
     </AuthSharer>
   </React.StrictMode>,
 )

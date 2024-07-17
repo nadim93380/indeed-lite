@@ -1,24 +1,32 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../Authentication/AuthSharer";
 import axios from "axios";
 import MyApplicationListCard from "../Components/MyApplicationListCard";
 import NoData from "../Components/NoData";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../Common/Loading";
 
 const MyApplication = () => {
     const {user}= useContext(AuthContext)
-    const [show, setShow] = useState([])
     
-    const getData = async() => {
-        const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/myApplication/${user.email}`)
-        console.log(data)
-        setShow(data)
+    const { isLoading, isError, data:show=[], error } = useQuery({
+        queryKey: ['appliedJobs'],
+        queryFn: async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_PASS_BaseURL}/myApplication/${user.email}`)
+            return data
+        },
+    })
+
+    if (isLoading) {
+        return <Loading></Loading>
     }
-    useEffect(() => {
-        getData()
-    }, [])
+    if (error || isError) {
+        return <NoData></NoData>
+    }
     if (show.length === 0) {
         return <NoData></NoData>
     }
+
     
     return (
         <div>
