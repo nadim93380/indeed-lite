@@ -5,11 +5,12 @@ import { MdDeleteSweep } from "react-icons/md";
 import { CiEdit } from "react-icons/ci";
 import axios from "axios";
 import Swal from "sweetalert2";
-
+import { useQueryClient } from "@tanstack/react-query";
 
 
 const MyJobListCard = (props) => {
 
+    const queryClient = useQueryClient();
     const item = props.item
     const idx = props.idx
 
@@ -33,6 +34,7 @@ const MyJobListCard = (props) => {
                                 text: "Your file has been deleted.",
                                 icon: "success"
                             });
+                            queryClient.invalidateQueries();
                         }
                     })
 

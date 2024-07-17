@@ -1,8 +1,11 @@
-# React + Vite
+# Indeed Lite Official Github
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Assignment_ID: assignment_category_0003
+Please Visit - [Live Link](https://indeed-lite.netlify.app)
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+There are some key feautures of our website
+- This is the official website of Indeed Lite limited.
+- User Can Login And Add Jobs In this Website.
+- As User Is adding Jobs they can customize their Job data with update delete.
+- This website is connected to a database. So every data will be kept.
+- For Better User Interface Some Packages have installed And Used.

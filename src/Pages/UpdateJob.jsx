@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
@@ -8,7 +9,8 @@ import Swal from "sweetalert2";
 const UpdateJob = () => {
     const item = useLoaderData()
     const [startDate, setStartDate] = useState(item.application_deadline);
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const queryClient = useQueryClient();
 
     // Handle Edit Job
     const handleUpdateJob = e => {
@@ -31,7 +33,8 @@ const UpdateJob = () => {
                     showConfirmButton: false,
                     timer: 1700
                 });
-                navigate('/myJobs')
+                navigate('/myJobs');
+                queryClient.invalidateQueries();
                 
             })
             .catch(function () {

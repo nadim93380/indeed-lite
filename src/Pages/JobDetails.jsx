@@ -84,7 +84,7 @@ const JobDetails = () => {
                         <p>Applicants : {item.job_applicants_number}</p>
                     </div>
 
-                    <div className="flex justify-between items-center">
+                    <div className="flex flex-col md:flex-row justify-between items-center">
                         <p>Salary Range : <span className="font-bold text-green-600">{item.salary_range}$/year</span></p>
                         <p className="text-red-600 flex justify-center items-center gap-2">Deadline : {new Date(item.application_deadline).toLocaleDateString("en-GB")}</p>
                     </div>
@@ -93,18 +93,18 @@ const JobDetails = () => {
                         <p>{item.long_description}</p>
                     </div>
                     {/* Employer info */}
-                    <div className="flex justify-between items-center border-t py-3">
+                    <div className="flex flex-col md:flex-row justify-between items-center border-t py-3">
                         <div className="flex justify-start gap-4 items-center">
                             <img src={item.posted_by_photo} className="h-24 w-24 rounded-full object-cover" />
                             <div>
                                 <h4 className="font-bold">Name : {item.name}</h4>
-                                <p className="text-sm">Human Resource Management</p>
-                                <p className="text-sm">Email : {item.posted_by_email}</p>
-                                <p className="text-sm">InDeed Lite Corporation.</p>
+                                <p className="text-xs md:text-sm">Human Resource Management</p>
+                                <p className="text-xs md:text-sm">Email : {item.posted_by_email}</p>
+                                <p className="text-xs md:text-sm">InDeed Lite Corporation.</p>
                             </div>
                         </div>
                         <div>
-                            <button onClick={() => document.getElementById('my_modal_2').showModal()} className="btn btn-block btn-success text-white" disabled={user.email === item.posted_by_email}>Apply Now <VscGitStashApply /></button>
+                            <button onClick={() => document.getElementById('my_modal_2').showModal()} className="btn btn-block flex btn-success text-white" disabled={user.email === item.posted_by_email}>Apply Now <VscGitStashApply /></button>
                             <div>
                                 {/* Open the modal using document.getElementById('ID').showModal() method */}
                                 <dialog id="my_modal_2" className="modal">

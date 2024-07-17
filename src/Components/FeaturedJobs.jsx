@@ -55,9 +55,6 @@ const FeaturedJobs = () => {
     if (error || isError) {
         return <NoData></NoData>
     }
-    if (show.length === 0) {
-        return <NoData></NoData>
-    }
 
     return (
         <div className="bg-slate-200 py-9 space-y-5">
@@ -66,7 +63,7 @@ const FeaturedJobs = () => {
                 <p className="w-[65%] mx-auto">eJobs featured jobs are shown here, You select the job according to your skill. Apply by clicking on & Apply Now If you have not created your CV at eJobs, create a CV .</p>
             </div>
             <div className='border-t border-black'>
-                <Box sx={{ width: '100%', bgcolor: '' }}>
+                <Box sx={{ width: '100%' }}>
                     <Tabs value={value} onChange={handleChange} centered>
                         <Tab label="All Jobs" />
                         <Tab label="On Site Jobs" />

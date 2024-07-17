@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const JobCard = ({ item }) => {
     return (
-        <div className="bg-white p-6 space-y-3">
+        <div className="bg-gradient-to-l from-green-50 p-6 space-y-3">
             <div className="flex justify-between items-center">
                 <h3 className="text-xl font-bold">{item.job_title}</h3>
                 <p>Type : <span className={`text-green-600 ${(item.job_type === 'Hybrid')?"text-blue-500":""} ${(item.job_type === 'Remote')?"text-purple-500":""}`}>{item.job_type}</span></p>
